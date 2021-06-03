@@ -7,31 +7,86 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+    // if the number is negative it doesn't have a factorial
+    if (n < 0) {
+    // return an impossible value to indicate this
+    return null
+    }
+    // if the number is zero, it's factorial is one.
+    if (n === 0) {
+      return 1;
+    }
+    // if the number is greater than zero, call the funciton again
+    // this time passing in a smaller number
+    // eventually we'll reach 0
+    // causing each call to return it's caller and the recursion terminates
+    return (n * factorial(n -1));
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+    // base case 
+    // if the length of the array is 0
+    if(array.length === 0){
+        return 0
+    }
+   return array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+   var sum = 0
+   for(var i = 0; i < array.length; i++){
+       if(array[i] instanceof Array){
+           sum += arraySum(array[i])
+       }
+       if(array[i] === Math.round(array[i])){
+           sum += array[i];
+       }
+   }
+    return sum
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+    if(n === 0){
+        return true 
+    }
+    if(n === 1){
+        return false
+    }
+    if(Math.abs(n) > 1){
+      return isEven(Math.abs(n - 2))
+    }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    if(n === 0){
+        return 0 
+    }
+    if(n === 1 || n === -1){
+        return 0
+    }
+    var sum = 0
+    if(n > 0){
+        return n - 1 + sumBelow(n - 1)
+    }
+    if(n < 0){
+        return n + 1 + sumBelow(n + 1)
+    }
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+    if(x === y){
+        return []
+    }
 };
 
 // 7. Compute the exponent of a number.
